@@ -9,12 +9,59 @@ body {
 
 .calculator {
     border: 4px solid black;
-    height: 500px;
-    width: 200px;
-    background-color: rgb(89, 89, 89);
-    border-radius: 5px;
+    height: 450px;
+    width: 300px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(0, 0, 0);
 }
 
 .display {
-    background-color: rgb(167, 166, 176);
+    color: rgb(255, 255, 255);
+    flex: 1;
+    height: 5px;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.button-container {
+    display: flex;
+    gap: 8px;
+}
+
+button {
+    border-radius: 50%;
+    border-style: none;
+    cursor: pointer;
+    padding: 25px;
+    flex: 1;
+}
+
+.buttons-secton {
+    flex: 3;
+    border-radius: 5px;
+    margin: 3px;
+}
+
+.vivid-gambage-buttons {
+    background-color:  #FF9500;
+}
+
+.dark-liver-buttons {
+    background-color: #505050;
+}
+
+.light-gray {
+    background-color: #D4D4D2;
+}
+
+.light-gray,
+.dark-liver-buttons,
+.vivid-gambage-buttons {
+    color: white;
+    font-weight: bold;
 }
