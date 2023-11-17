@@ -1,0 +1,20 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: peachpuff;
+}
+
+.calculator {
+    border: 4px solid black;
+    height: 500px;
+    width: 200px;
+    background-color: rgb(89, 89, 89);
+    border-radius: 5px;
+}
+
+.display {
+    background-color: rgb(167, 166, 176);
+}
