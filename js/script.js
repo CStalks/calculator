@@ -73,5 +73,5 @@ buttons.forEach(button => {
 //check the equal symbol
 
 //check how to make the decimal work
-    
+ 
    
