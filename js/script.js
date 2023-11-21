@@ -1,6 +1,5 @@
 function add(num1,num2){
     return num1 + num2;
-
 }
 
 function substract(num1,num2){
@@ -28,68 +27,47 @@ function display(){
     const buttons = document.querySelectorAll('button');
     const display = document.querySelector('.display');
 
-
     let input = '';
-    let operator = '';
+    let operator = ''
+    const exprArr = [];
     let result = 0;
-    let exprArr = []
 
     buttons.forEach(button => {
         button.addEventListener('click', () => {
-               
-            //check how to not show the operators in the display
-            input += button.textContent;
-            display.textContent = input;
-            //clears the display when AC button is clicked
-            if(button.textContent === 'AC'){
-                //check how to change the AC button to C when 
-                //AC is clicked
-                display.textContent = 0;
-                input = operator = '';
-                exprArr = [];
-            }
 
-            if(button.textContent === '+' ||
-               button.textContent === '*' ||
-               button.textContent === '/' ||
-               button.textContent === '-' ||
-               button.textContent === '='){
-
-                if(button.textContent === '='){
-                    display.textContent = result
-                }
-
-                operator = input.split('').pop();
-                input = input.slice(0, -1);
-                exprArr.push(+input);
-                input = '';
-            }
-
-            if(button.textContent === '='){
-                console.log("input here: ", result);
-            }
-
-            result += operate(exprArr[0], exprArr[1], exprArr[2]);
-
-
-            //shows the result 
-            if(button.textContent === '='){
-                display.textContent = result;
-
-            }
-        });
-    });
         
+            if(button.textContent === '*' || button.textContent === '-' ||
+               button.textContent === '+' || button.textContent === '/'){
 
+                operator += button.textContent; 
 
-    //let user enter first number, an operator, and second number
-    //evaluate this result and store in a result variable if the user enter another operator
-    //repeat 1 and 2 and if user enters equal symbol append the calculations to result to  show the final result
-    
+                if(input && operator){
+
+                    exprArr.push(input);
+                    exprArr.push(operator);
+                    console.log("operator begin read: ", operator);
+                    console.log("array length ", exprArr.length);
+
+                    input = '';
+                    operator = '';
+                }
+                    console.log(exprArr);
+            } else {
+                input += button.textContent;
+                display.textContent = input;
+                console.log("input: ", input);
+            }
+
+            if(exprArr.length === 3){
+                console.log("I have 3 elements");
+            }
+            
+        });
+    }); 
+   
 }
 
 function main(){
     display();
 }
-
 main();
