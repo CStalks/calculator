@@ -2,12 +2,14 @@ let input = '';
 let operand = '';
 let exprArr = [];
 let result = 0;
+let quotient = 0;
 
 const buttons = document.querySelectorAll('.number');
 const display = document.querySelector('.display');
 const operators = document.querySelectorAll('.op');
 const clear = document.querySelector('.clear');
 const equal = document.querySelector('.result');
+const percent = document.querySelector('.percent');
 
 function add(num1,num2){
     return num1 + num2;
@@ -59,21 +61,28 @@ buttons.forEach(button => {
         }
         input += button.textContent;
         display.textContent = input;
+        quotient = input;
     });
 });
   
-
 //clears display and reset everything when clicked
 clear.addEventListener('click', () => {
     clear.textContent = 'AC';
     display.textContent = result = 0;
     input = operand = '';
     exprArr = [];
+    quotient = 0;
+});
+
+//divides the input number by 100 each time is clicked
+percent.addEventListener('click', () => {
+    if(quotient && typeof(+quotient) === 'number'){
+        display.textContent = quotient / 100;
+        quotient = display.textContent;
+    }
 });
 
 //work on the +/- (it makes a number negative)
-
-//work on the %(google how it works)
 
 //check the equal symbol
 //equal.addEventListener('click', () => {
