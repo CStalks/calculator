@@ -39,7 +39,10 @@ button {
     border-style: none;
     cursor: pointer;
     padding: 25px;
-    flex: 1;
+    width: 24%;
+    display: flex;
+    align-content: center;
+    align-items: center;
 }
 
 .buttons-secton {
@@ -56,13 +59,15 @@ button {
     background-color: #505050;
 }
 
-.light-gray {
-    background-color: #D4D4D2;
-}
-
 .light-gray,
 .dark-liver-buttons,
 .vivid-gambage-buttons {
     color: white;
     font-size: 20px;
+    text-align: center;
+}
+
+.light-gray {
+    background-color: #D4D4D2;
+    color: black;
 }
