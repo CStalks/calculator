@@ -82,9 +82,15 @@ clear.addEventListener('click', () => {
 
 
 negativeSign.addEventListener('click', () => {
-    let strLen = input.length + 1;
-    input = input.padStart(strLen, '-');
-    display.textContent = input;
+    //fix the default display 0 bug
+    if(input < 0){
+        input = input.slice(1);
+        display.textContent = input;
+    } else {
+        let strLen = input.length + 1;
+        input = input.padStart(strLen, '-');
+        display.textContent = input;
+    }
 });
  
    
