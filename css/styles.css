@@ -39,11 +39,12 @@ button {
     border-style: none;
     cursor: pointer;
     padding: 25px;
-    width: 24%;
+    width: 25%;
     display: flex;
     align-content: center;
     align-items: center;
 }
+
 
 .buttons-secton {
     flex: 3;

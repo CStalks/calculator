@@ -2,7 +2,7 @@ let input = '';
 let operand = '';
 let exprArr = [];
 let result = 0;
-let quotient = 0;
+let negativeSymbol  = '';
 
 const buttons = document.querySelectorAll('.number');
 const display = document.querySelector('.display');
@@ -10,6 +10,7 @@ const operators = document.querySelectorAll('.op');
 const clear = document.querySelector('.clear');
 const equal = document.querySelector('.result');
 const percent = document.querySelector('.percent');
+const negativeSign = document.querySelector('.negative-sign');
 
 function add(num1,num2){
     return num1 + num2;
@@ -38,11 +39,13 @@ function operate(num1, operator, num2){
 
 operators.forEach(operator => {
     operator.addEventListener('click', () => {
+        operand = operator.textContent;
+
         if(input){
             exprArr.push(input);
+            console.log(exprArr);
             input = '';
         }
-        operand = operator.textContent;
 
         if(exprArr.length === 3){
             result = operate(+exprArr[0], exprArr[1], +exprArr[2]);
@@ -55,15 +58,18 @@ operators.forEach(operator => {
 buttons.forEach(button => {
     button.addEventListener('click', () => {
         clear.textContent = 'C';
-        if(operand){
+
+        if(operand){  
             exprArr.push(operand);
             operand = '';
         }
+
         input += button.textContent;
         display.textContent = input;
-        quotient = input;
     });
 });
+
+
   
 //clears display and reset everything when clicked
 clear.addEventListener('click', () => {
@@ -74,21 +80,11 @@ clear.addEventListener('click', () => {
     quotient = 0;
 });
 
-//divides the input number by 100 each time is clicked
-percent.addEventListener('click', () => {
-    if(quotient && typeof(+quotient) === 'number'){
-        display.textContent = quotient / 100;
-        quotient = display.textContent;
-    }
+
+negativeSign.addEventListener('click', () => {
+    let strLen = input.length + 1;
+    input = input.padStart(strLen, '-');
+    display.textContent = input;
 });
-
-//work on the +/- (it makes a number negative)
-
-//check the equal symbol
-//equal.addEventListener('click', () => {
-// display.textContent = result;
-//});
-
-//check how to make the decimal work
  
    
