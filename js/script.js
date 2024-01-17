@@ -13,6 +13,7 @@ const clear = document.querySelector('.clear');
 const equal = document.querySelector('.result');
 const percent = document.querySelector('.percent');
 const negativeSign = document.querySelector('.negative-sign');
+const decimal = document.querySelector('.decimal');
 
 function add(num1,num2){
     return num1 + num2;
@@ -103,7 +104,13 @@ negativeSign.addEventListener('click', () => {
 
 percent.addEventListener('click', () => {
     input = input / 100;
-    display.textContent = input;
+    if(input.length <= 10){
+        display.textContent = input;
+    } else {
+        display.textContent = +input.toExponential(8);
+    }
+    
+
 });
  
 equal.addEventListener('click', () => {
@@ -163,5 +170,13 @@ equal.addEventListener('click', () => {
         result = operate(+exprArr[0], exprArr[1], +prevTmpVal);
         display.textContent = result;
         exprArr = [result];
+    }
+});
+
+decimal.addEventListener('click', () => {
+    if(!input.includes('.')){
+        if(input === '') input += 0;
+        input += decimal.textContent;
+        display.textContent = input;
     }
 });
