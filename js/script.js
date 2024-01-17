@@ -1,10 +1,10 @@
-let input = '0';
+let input = '';
 let operand = '';
 let exprArr = [];
 let result = 0;
 let negativeSymbol  = '';
-let preVal = '';
-let prevOp = '';
+let prevTmpVal = '';
+let tmpOperand = '';
 
 const buttons = document.querySelectorAll('.number');
 const display = document.querySelector('.display');
@@ -42,11 +42,11 @@ function operate(num1, operator, num2){
 operators.forEach(operator => {
     operator.addEventListener('click', () => {
         operand = operator.textContent;
-        prevOp = operand;
+        tmpOperand = operand;
 
         if(input){
             exprArr.push(+input);
-            preVal = input;
+            prevTmpVal = input;
             input = '';
         }
 
@@ -82,8 +82,8 @@ clear.addEventListener('click', () => {
     input = operand = '';
     exprArr = [];
     quotient = 0;
-    preVal = '';
-    prevOp = '';
+    prevTmpVal = '';
+    tmpOperand = '';
 });
 
 negativeSign.addEventListener('click', () => {
@@ -107,16 +107,25 @@ percent.addEventListener('click', () => {
 });
  
 equal.addEventListener('click', () => {
+    //executes using prev value and operator when the equal button is being 
+    //clicked any number of times 
+    if(exprArr.length === 1){
+        if(operand){
+            //updates the tmp values only if we change to a new operand 
+            tmpOperand = operand;
+            prevTmpVal = exprArr[0];
+            operand = '';
+        }
+        if(tmpOperand && prevTmpVal){
+            exprArr.push(tmpOperand);
+            exprArr.push(+prevTmpVal);  
 
-    if(typeof exprArr[0] === 'string'){
-        if(preVal){
-            console.log(exprArr);
-            exprArr[1] = exprArr[0];
-            exprArr[0] = +preVal;
-            console.log(exprArr)
+            result = operate(+exprArr[0], exprArr[1], +exprArr[2]);
+            display.textContent = result;
+            exprArr = [result];
         }
     }
-    
+
     //add operand to exprArr only if there is some number in the exprArr
     if(operand){  
         exprArr.push(operand);
@@ -126,32 +135,32 @@ equal.addEventListener('click', () => {
     //when there is a number inside the input store it in array and make it empty
     if(input){
         exprArr.push(+input);
-        preVal = input;
+        prevTmpVal = input;
         input = '';
     }
 
-    //executes using prev value and operator when the equal button is being 
-    //clicked any number of times 
-    if(exprArr.length == 1){
-        if(prevOp && preVal){
-            exprArr.push(prevOp);
-            exprArr.push(+preVal);  
-
-            result = operate(+exprArr[0], exprArr[1], +exprArr[2]);
-            display.textContent = result;
-            exprArr = [result];
+    if(typeof exprArr[0] === 'string' && typeof exprArr[1] === 'number'){
+        if(exprArr[0] === '+'){
+            display.textContent = prevTmpVal;
+            exprArr[1] = exprArr[0];
+            exprArr[0] = +prevTmpVal;
+            return;
+        } else if(exprArr[0] === '-'){
+            exprArr[2] = +(exprArr[0] + exprArr[1]);
+            exprArr[1] = exprArr[0];
+            exprArr[0] = 0;
         }
     }
    
     if(exprArr.length == 2){
-        result = operate(+exprArr[0], exprArr[1], +preVal);
+        result = operate(+exprArr[0], exprArr[1], +prevTmpVal);
         display.textContent = result;
         exprArr = [result];
     }
 
-   //execute when user input two numbers and one operator
+    //execute when user input two numbers and one operator
     if(exprArr.length == 3){
-        result = operate(+exprArr[0], exprArr[1], +preVal);
+        result = operate(+exprArr[0], exprArr[1], +prevTmpVal);
         display.textContent = result;
         exprArr = [result];
     }
