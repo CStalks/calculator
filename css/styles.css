@@ -4,11 +4,12 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: rgb(164, 138, 114);
+    background-color: rgb(212, 128, 50);
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .calculator {
-    border: 5px solid rgb(0, 0, 0);
+    border: 8px solid rgb(0, 0, 0);
     height: 450px;
     width: 300px;
     display: flex;
@@ -18,39 +19,32 @@ body {
 }
 
 .display {
-    color: 	rgb(255, 255, 255);
+    color: 	rgb(0, 0, 0);
     flex: 1;
     height: 5px;
     display: flex;
     justify-content: end;
     align-items: end;
-    font-size: 30px;
-    width: 99%;
+    font-size: 40px;
+    width: 100%;
     background-color: rgb(152, 152, 152);
 }
 
 .button-container {
     display: flex;
-    gap: 2px;
+    gap: 2px; 
 }
 
 button {
-    border-radius: 10%;
+    border-radius: 10px;
     border-style: none;
     cursor: pointer;
     padding: 25px;
-    width: 100%;
+    width: calc(100% / 4);
     display: flex;
-    align-content: center;
-    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
     flex: 1;
-    margin: 0;
-}
-
-.buttons-secton {
-    flex: 3;
-    border-radius: 5px;
-    margin: 3px;
 }
 
 .vivid-gambage-buttons {
@@ -64,16 +58,16 @@ button {
 .light-gray,
 .dark-liver-buttons,
 .vivid-gambage-buttons {
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 20px;
     text-align: center;
 }
 
 .light-gray {
     background-color: #D4D4D2;
-    color: black;
+    color: rgb(0, 0, 0);
 }
 
 .zero {
-    flex: 4;
+    flex: 4.2;
 }

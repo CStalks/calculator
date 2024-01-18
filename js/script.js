@@ -1,4 +1,4 @@
-let input = '';
+let input = '0';
 let operand = '';
 let exprArr = [];
 let result = 0;
@@ -80,7 +80,8 @@ buttons.forEach(button => {
 clear.addEventListener('click', () => {
     clear.textContent = 'AC';
     display.textContent = result = 0;
-    input = operand = '';
+    input = '0';
+    operand = '';
     exprArr = [];
     quotient = 0;
     prevTmpVal = '';
@@ -88,11 +89,7 @@ clear.addEventListener('click', () => {
 });
 
 negativeSign.addEventListener('click', () => {
-    //fix the default display 0 bug
-    if(input == 0){
-
-    }
-    if(input < 0){
+    if(input.includes('-')){
         input = input.slice(1);
         display.textContent = input;
     } else {
@@ -103,14 +100,13 @@ negativeSign.addEventListener('click', () => {
 });
 
 percent.addEventListener('click', () => {
+    if(input === '0') return;
     input = input / 100;
     if(input.length <= 10){
         display.textContent = input;
     } else {
         display.textContent = +input.toExponential(8);
     }
-    
-
 });
  
 equal.addEventListener('click', () => {
@@ -125,11 +121,16 @@ equal.addEventListener('click', () => {
         }
         if(tmpOperand && prevTmpVal){
             exprArr.push(tmpOperand);
-            exprArr.push(+prevTmpVal);  
+            exprArr.push(+prevTmpVal);
 
-            result = operate(+exprArr[0], exprArr[1], +exprArr[2]);
-            display.textContent = result;
-            exprArr = [result];
+            result = operate(+exprArr[0], exprArr[1], +exprArr[2]).toString();
+            if(result.includes('.')){
+                result =  Math.round((+result) * 10) / 10;
+                display.textContent = result;
+                exprArr = [result];
+            }
+            display.textContent = +result;
+            exprArr = [+result];
         }
     }
 
@@ -160,14 +161,24 @@ equal.addEventListener('click', () => {
     }
    
     if(exprArr.length == 2){
-        result = operate(+exprArr[0], exprArr[1], +prevTmpVal);
+        result = operate(+exprArr[0], exprArr[1], +prevTmpVal).toString();
+        if(result.includes('.')){
+            result =  Math.round((+result) * 10) / 10;
+            display.textContent = result;
+            exprArr = [result];
+        }
         display.textContent = result;
         exprArr = [result];
     }
 
     //execute when user input two numbers and one operator
     if(exprArr.length == 3){
-        result = operate(+exprArr[0], exprArr[1], +prevTmpVal);
+        result = operate(+exprArr[0], exprArr[1], +prevTmpVal).toString();
+        if(result.includes('.')){
+            result =  Math.round((+result) * 10) / 10;
+            display.textContent = result;
+            exprArr = [result];
+        }
         display.textContent = result;
         exprArr = [result];
     }
