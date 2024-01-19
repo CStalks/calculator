@@ -60,7 +60,17 @@ button {
 .vivid-gambage-buttons {
     color: rgb(255, 255, 255);
     font-size: 20px;
-    text-align: center;
+    font-weight: bold;
+}
+
+
+.light-gray:active,
+.dark-liver-buttons:active,
+.vivid-gambage-buttons:active {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: bold;
+    background: rgb(182, 182, 182);
 }
 
 .light-gray {
@@ -70,4 +80,9 @@ button {
 
 .zero {
     flex: 4.2;
+}
+
+.op:focus {
+    background-color: white;
+    color: orange;
 }
